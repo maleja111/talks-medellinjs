@@ -5,14 +5,18 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { TalkRegisterComponent } from './talk-register/talk-register.component';
+import { TalkTableComponent } from './talk-table/talk-table.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TalkRegisterComponent
+    TalkRegisterComponent,
+    TalkTableComponent
   ],
   imports: [
     BrowserModule,
+    AppRoutingModule,
     ReactiveFormsModule,
     HttpModule
   ],
