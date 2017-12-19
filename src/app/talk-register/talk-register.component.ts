@@ -86,7 +86,7 @@ export class TalkRegisterComponent implements OnInit {
   }
 
   setMessage(c: AbstractControl): void {
-    this.emailMessage = '';s
+    this.emailMessage = '';
     if ((c.touched || c.dirty) && c.errors) {
       this.emailMessage = Object.keys(c.errors).map(key =>
         this.validationMessages[key]).join(' ');
