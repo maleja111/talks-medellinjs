@@ -67,9 +67,6 @@ export class TalkRegisterComponent implements OnInit {
       necessaryResources: ''
     });
 
-    // this.customerForm.get('notification').valueChanges
-    //   .subscribe(value => this.setNotification(value));
-
     const emailControl = this.customerForm.get('emailGroup.email');
     emailControl.valueChanges.debounceTime(1000).subscribe(value =>
       this.setMessage(emailControl));
@@ -89,7 +86,7 @@ export class TalkRegisterComponent implements OnInit {
   }
 
   setMessage(c: AbstractControl): void {
-    this.emailMessage = '';
+    this.emailMessage = '';s
     if ((c.touched || c.dirty) && c.errors) {
       this.emailMessage = Object.keys(c.errors).map(key =>
         this.validationMessages[key]).join(' ');
