@@ -11,6 +11,7 @@ import { TalkRegisterComponent } from './talk-register/talk-register.component';
 import { TalkTableComponent } from './talk-table/talk-table.component';
 
 import { TalkService } from './shared/services/talk.service';
+import { SpeakerService } from './shared/services//speaker.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { TalkService } from './shared/services/talk.service';
     ParticlesModule
   ],
   providers: [
-    TalkService
+    TalkService,
+    SpeakerService
   ],
   bootstrap: [
     AppComponent
