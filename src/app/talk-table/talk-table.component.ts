@@ -55,7 +55,7 @@ export class TalkTableComponent implements OnInit {
       talkDescription: result.description,
       speakerDescription: result.speakers[0].description,
       necessaryResources: result.speakers[0].name,
-    }
+    };
   }
 
 }
