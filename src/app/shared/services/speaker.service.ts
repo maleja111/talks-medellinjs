@@ -1,20 +1,22 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http, Response, RequestOptionsArgs, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
 @Injectable()
-export class TalkService {
+export class SpeakerService {
 
   constructor(private http: Http) {
 
   }
 
-  getTalks(): Observable<any> {
-    return this.http.get('http://localhost:8081/talks')
+  saveSpeaker(): Observable<any> {
+    const headers = new Headers()
+    const options = '';
+    return this.http.post('http://localhost:8081/talks', options)
       .map( (res: Response) => {
-        console.log('getTalks', res.json());
+        console.log(res.json());
         return res.json();
       })
       .catch(this.handleError);
@@ -29,7 +31,7 @@ export class TalkService {
     } else {
       errMsg = error.message ? error.message : error.toString();
     }
-    console.log('handleError', errMsg);
+    console.log(errMsg);
     return Observable.throw(errMsg);
   }
 }

@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, Validators, AbstractControl, ValidatorFn, FormA
 
 import 'rxjs/add/operator/debounceTime';
 
-import { Talk } from './talk';
+import { Talk } from '../shared/talk';
 
 function emailMatcher(c: AbstractControl): { [key: string]: boolean } | null {
   let emailControl = c.get('email');
@@ -83,6 +83,7 @@ export class TalkRegisterComponent implements OnInit {
 
   save(): void {
     console.log('Saved: ' + JSON.stringify(this.customerForm.value));
+
   }
 
   setMessage(c: AbstractControl): void {
@@ -91,16 +92,6 @@ export class TalkRegisterComponent implements OnInit {
       this.emailMessage = Object.keys(c.errors).map(key =>
         this.validationMessages[key]).join(' ');
     }
-  }
-
-  setNotification(notifyVia: string): void {
-    const twitterControl = this.customerForm.get('twitterId');
-    if (notifyVia === 'text') {
-      twitterControl.setValidators(Validators.required);
-    } else {
-      twitterControl.clearValidators();
-    }
-    twitterControl.updateValueAndValidity();
   }
 
 }
