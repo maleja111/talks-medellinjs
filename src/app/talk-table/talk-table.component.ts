@@ -54,7 +54,7 @@ export class TalkTableComponent implements OnInit {
       shirtSize: result.size,
       talkDescription: result.description,
       speakerDescription: result.speakers[0].description,
-      necessaryResources: result.speakers[0].name,
+      necessaryResources: result.sources,
     };
   }
 
