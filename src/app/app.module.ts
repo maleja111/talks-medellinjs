@@ -1,12 +1,15 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+
+import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { TalkRegisterComponent } from './talk-register/talk-register.component';
 import { TalkTableComponent } from './talk-table/talk-table.component';
-import { AppRoutingModule } from './app-routing.module';
+
+import { TalkService } from './shared/services/talk.service';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,11 @@ import { AppRoutingModule } from './app-routing.module';
     ReactiveFormsModule,
     HttpModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    TalkService
+  ],
+  bootstrap: [
+    AppComponent
+  ]
 })
 export class AppModule { }
