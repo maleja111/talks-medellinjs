@@ -45,6 +45,7 @@ body {
   font-weight: 300;
   line-height: 1.5em;
   position: relative;
+  background-size: 25%;
 }
 
 ol, ul {
@@ -1635,12 +1636,21 @@ footer .footer-nav li a:hover {
 .container-talk {
   position: relative;
   padding-top: 1.5em;
-  margin-right: 0;
-  margin-bottom: 0;
+  padding: 20px;
   margin-left: 0;
   border-width: .2rem;
-  padding-left: 18.5em;
+
 }
 .container{
-  max-width: 960px !important;
+  max-width: 100%;
+  padding-right: 0px;
+  padding-left: 0px;
+}
+
+.main{
+  background-color: #fff;
+  margin-bottom: 100px;
+  padding-left: 10.8em;
+  padding-right: 10.8em;
+  padding-top: 4.3em;
 }
