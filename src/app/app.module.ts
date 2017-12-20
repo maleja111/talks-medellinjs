@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { ParticlesModule } from 'angular-particle';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -23,8 +22,7 @@ import { SpeakerService } from './shared/services//speaker.service';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpModule,
-    ParticlesModule
+    HttpModule
   ],
   providers: [
     TalkService,
