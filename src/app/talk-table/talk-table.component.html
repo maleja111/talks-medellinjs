@@ -1,3 +1,40 @@
-<p>
-  talk-table works!
-</p>
+<div class='panel panel-primary'>
+  <div class='panel-heading'>
+    {{pageTitle | uppercase}}
+  </div>
+  <div class='panel-body'>
+    <div class='table-responsive'>
+      <table class='table'>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Twitter User</th>
+            <th>Title Talk</th>
+            <th>Duration</th>
+            <th>Shirt Size</th>
+            <th>Talk Description</th>
+            <th>Speaker Description</th>
+            <th>Necessary Resources</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor='let item of talk'>
+            <td>{{ item.firstName }}</td>
+            <td>{{ item.email }}</td>
+            <td>{{ item.twitterUser }}</td>
+            <td>{{ item.titleTalk }}</td>
+            <td>{{ item.duration }}</td>
+            <td>{{ item.shirtSize }}</td>
+            <td>{{ item.talkDescription }}</td>
+            <td>{{ item.speakerDescription }}</td>
+            <td>{{ item.necessaryResources }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<div *ngIf='errorMessage' class='alert alert-danger'>
+  Error: {{ errorMessage }}
+</div>
