@@ -20,6 +20,15 @@ export class TalkService {
       .catch(this.handleError);
   }
 
+  saveTalk(data: any): Observable<any> {
+    return this.http.post('http://localhost:8081/talks', data)
+      .map( (res: Response) => {
+        console.log('saveTalk', res.json());
+        return res.json();
+      })
+      .catch(this.handleError);
+  }
+
   private handleError(error: Response | any) {
     let errMsg: string;
     if (error instanceof Response) {

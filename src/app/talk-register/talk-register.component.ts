@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl, ValidatorFn, FormArray } from '@angular/forms';
+import { SpeakerService } from '../shared/services/speaker.service';
+import { TalkService } from '../shared/services/talk.service';
+import { ITalk } from '../shared/talk';
 
 import 'rxjs/add/operator/debounceTime';
 
-import { Talk } from '../shared/talk';
-
 function emailMatcher(c: AbstractControl): { [key: string]: boolean } | null {
-  let emailControl = c.get('email');
-  let confirmControl = c.get('confirmEmail');
+  const emailControl = c.get('email');
+  const confirmControl = c.get('confirmEmail');
 
   if (emailControl.pristine || confirmControl.pristine) {
     return null;
@@ -35,12 +36,14 @@ function ratingRange(min: number, max: number): ValidatorFn {
 })
 export class TalkRegisterComponent implements OnInit {
 
-  customerForm: FormGroup;
-  customer: Talk = new Talk();
+  talkForm: FormGroup;
   emailMessage: string;
+  errorMessage: string;
+  talk: ITalk[];
+  filteredTals: ITalk[];
 
   get addresses(): FormArray {
-    return <FormArray>this.customerForm.get('addresses');
+    return <FormArray>this.talkForm.get('addresses');
   }
 
   private validationMessages = {
@@ -48,10 +51,14 @@ export class TalkRegisterComponent implements OnInit {
     pattern: 'Please enter a valid email address.'
   };
 
-  constructor(private fb: FormBuilder) { }
+  constructor(
+    private fb: FormBuilder,
+    private talkService: TalkService,
+    private speakerService: SpeakerService
+  ) { }
 
   ngOnInit(): void {
-    this.customerForm = this.fb.group({
+    this.talkForm = this.fb.group({
       firstName: ['', [Validators.required, Validators.minLength(3)]],
       lastName: ['', [Validators.required, Validators.maxLength(50)]],
       emailGroup: this.fb.group({
@@ -64,27 +71,45 @@ export class TalkRegisterComponent implements OnInit {
       shirtSize: ['', [Validators.required]],
       talkDescription: ['', [Validators.required, Validators.minLength(3)]],
       speakerDescription: ['', [Validators.required, Validators.minLength(3)]],
-      necessaryResources: ''
+      necessaryResources: ['', [Validators.required]]
     });
 
-    const emailControl = this.customerForm.get('emailGroup.email');
+    const emailControl = this.talkForm.get('emailGroup.email');
     emailControl.valueChanges.debounceTime(1000).subscribe(value =>
       this.setMessage(emailControl));
   }
 
   populateTestData(): void {
-    this.customerForm.patchValue({
+    this.talkForm.patchValue({
       firstName: 'Jack',
+      lastName: 'white',
       titleTalk: 'Title Talk',
-      lastName: 'Harkness',
-      emailGroup: { email: 'jack@torchwood.com', confirmEmail: 'jack@torchwood.com' }
+      twitterId: '@Harkness',
+      emailGroup: { email: 'jack@torchwood.com', confirmEmail: 'jack@torchwood.com' },
+      duration: '1',
+      shirtSize: 'S',
+      talkDescription: 'Description of',
+      speakerDescription: 'Developer',
+      necessaryResources: 'IMac!!!',
     });
   }
 
   save(): void {
-    console.log('Saved: ' + JSON.stringify(this.customerForm.value));
-
+    console.log('Saved: ' + JSON.stringify(this.talkForm.value));
+    this.saveSpeakers(this.talkForm.value);
   }
+
+  saveSpeakers(data) {
+    this.speakerService.saveSpeaker(this.jsonSpeaker(this.talkForm.value))
+      .subscribe((result) => this.saveTalks(result._id), error => this.errorMessage = <any>error);
+  }
+
+  saveTalks(id: any) {
+    this.talkService.saveTalk(this.jsonTalk(this.talkForm.value, id)).subscribe(
+      () => { }, error => this.errorMessage = <any>error);
+  }
+
+
 
   setMessage(c: AbstractControl): void {
     this.emailMessage = '';
@@ -92,6 +117,26 @@ export class TalkRegisterComponent implements OnInit {
       this.emailMessage = Object.keys(c.errors).map(key =>
         this.validationMessages[key]).join(' ');
     }
+  }
+
+  jsonSpeaker(data) {
+    return {
+      'name': `${data.firstName} ${data.lastName}`,
+      'email': data.emailGroup.email,
+      'twitterUser': data.twitterId,
+      'description': data.speakerDescription,
+      'size': data.shirtSize,
+    };
+  }
+
+  jsonTalk(data, id) {
+    return {
+      'speakers': [{ '_id': id }],
+      'title': data.titleTalk,
+      'duration': data.duration,
+      'description': data.talkDescription,
+      'sources': data.necessaryResources
+    };
   }
 
 }

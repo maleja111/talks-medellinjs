@@ -4,35 +4,35 @@
   </div>
 
   <div class="panel-body">
-    <form class="form-horizontal" novalidate (ngSubmit)="save()" [formGroup]="customerForm">
+    <form class="form-horizontal" novalidate (ngSubmit)="save()" [formGroup]="talkForm">
       <fieldset>
-        <div class="form-group" [ngClass]="{'has-error': (customerForm.get('firstName').touched || 
-                                            customerForm.get('firstName').dirty) &&
-                                            !customerForm.get('firstName').valid }">
+        <div class="form-group" [ngClass]="{'has-error': (talkForm.get('firstName').touched || 
+                                            talkForm.get('firstName').dirty) &&
+                                            !talkForm.get('firstName').valid }">
           <label class="col-md-2 control-label" for="firstNameId">First Name</label>
           <div class="col-md-8">
             <input class="form-control" id="firstNameId" type="text" placeholder="First Name (required)" formControlName="firstName"/>
-            <span class="help-block" *ngIf="(customerForm.get('firstName').touched || 
-                                                       customerForm.get('firstName').dirty) && 
-                                                       customerForm.get('firstName').errors">
-              <span *ngIf="customerForm.get('firstName').errors.required">Please enter your first name.</span>
-              <span *ngIf="customerForm.get('firstName').errors.minlength">The first name must be longer than 3 characters.</span>
+            <span class="help-block" *ngIf="(talkForm.get('firstName').touched || 
+                                                       talkForm.get('firstName').dirty) && 
+                                                       talkForm.get('firstName').errors">
+              <span *ngIf="talkForm.get('firstName').errors.required">Please enter your first name.</span>
+              <span *ngIf="talkForm.get('firstName').errors.minlength">The first name must be longer than 3 characters.</span>
             </span>
           </div>
         </div>
 
-        <div class="form-group" [ngClass]="{'has-error': (customerForm.get('lastName').touched || customerForm.get('lastName').dirty) && !customerForm.get('lastName').valid }">
+        <div class="form-group" [ngClass]="{'has-error': (talkForm.get('lastName').touched || talkForm.get('lastName').dirty) && !talkForm.get('lastName').valid }">
           <label class="col-md-2 control-label" for="lastNameId">Last Name</label>
           <div class="col-md-8">
             <input class="form-control" id="lastNameId" type="text" placeholder="Last Name (required)" formControlName="lastName" />
-            <span class="help-block" *ngIf="(customerForm.get('lastName').touched || customerForm.get('lastName').dirty) && customerForm.get('lastName').errors">
-              <span *ngIf="customerForm.get('lastName').errors.required">Please enter your last name.</span>
-              <span *ngIf="customerForm.controls.lastName.errors.maxlength">The last name must be less than 50 characters.</span>
+            <span class="help-block" *ngIf="(talkForm.get('lastName').touched || talkForm.get('lastName').dirty) && talkForm.get('lastName').errors">
+              <span *ngIf="talkForm.get('lastName').errors.required">Please enter your last name.</span>
+              <span *ngIf="talkForm.controls.lastName.errors.maxlength">The last name must be less than 50 characters.</span>
             </span>
           </div>
         </div>
 
-        <div formGroupName="emailGroup" [ngClass]="{'has-error': customerForm.get('emailGroup').errors }">
+        <div formGroupName="emailGroup" [ngClass]="{'has-error': talkForm.get('emailGroup').errors }">
           <div class="form-group" [ngClass]="{'has-error': emailMessage}">
             <label class="col-md-2 control-label" for="emailId">Email</label>
             <div class="col-md-8">
@@ -41,58 +41,58 @@
             </div>
           </div>
 
-          <div class="form-group" [ngClass]="{'has-error': (customerForm.get('emailGroup.confirmEmail').touched || 
-                                                customerForm.get('emailGroup.confirmEmail').dirty) && 
-                                                !customerForm.get('emailGroup.confirmEmail').valid }">
+          <div class="form-group" [ngClass]="{'has-error': (talkForm.get('emailGroup.confirmEmail').touched || 
+                                                talkForm.get('emailGroup.confirmEmail').dirty) && 
+                                                !talkForm.get('emailGroup.confirmEmail').valid }">
             <label class="col-md-2 control-label" for="confirmEmailId">Confirm Email</label>
             <div class="col-md-8">
               <input class="form-control" id="confirmEmailId" type="email" placeholder="Confirm Email (required)" formControlName="confirmEmail"/>
-              <span class="help-block" *ngIf="(customerForm.get('emailGroup.confirmEmail').touched || 
-                                                          customerForm.get('emailGroup.confirmEmail').dirty) && 
-                                                          (customerForm.get('emailGroup.confirmEmail').errors ||
-                                                           customerForm.get('emailGroup').errors)">
-                <span *ngIf="customerForm.get('emailGroup.confirmEmail').errors?.required">Please confirm your email address.</span>
-                <span *ngIf="customerForm.get('emailGroup').errors?.match">The confirmation does not match the email address.</span>
+              <span class="help-block" *ngIf="(talkForm.get('emailGroup.confirmEmail').touched || 
+                                                          talkForm.get('emailGroup.confirmEmail').dirty) && 
+                                                          (talkForm.get('emailGroup.confirmEmail').errors ||
+                                                           talkForm.get('emailGroup').errors)">
+                <span *ngIf="talkForm.get('emailGroup.confirmEmail').errors?.required">Please confirm your email address.</span>
+                <span *ngIf="talkForm.get('emailGroup').errors?.match">The confirmation does not match the email address.</span>
               </span>
             </div>
           </div>
         </div>
 
-        <div class="form-group" [ngClass]="{'has-error': !customerForm.get('twitterId').valid }">
+        <div class="form-group" [ngClass]="{'has-error': !talkForm.get('twitterId').valid }">
           <label class="col-md-2 control-label" for="twitterId">Twitter user</label>
           <div class="col-md-8">
             <input class="form-control" id="twitterId" type="tel" placeholder="twiter User (required)" formControlName="twitterId" />
-            <span class="help-block" *ngIf="customerForm.get('twitterId').errors">
-              <span *ngIf="customerForm.get('twitterId').errors.required">Please enter your twiter User.</span>
+            <span class="help-block" *ngIf="talkForm.get('twitterId').errors">
+              <span *ngIf="talkForm.get('twitterId').errors.required">Please enter your twiter User.</span>
             </span>
           </div>
         </div>
 
-        <div class="form-group" [ngClass]="{'has-error': (customerForm.get('titleTalk').touched || 
-                                              customerForm.get('titleTalk').dirty) &&
-                                              !customerForm.get('titleTalk').valid }">
+        <div class="form-group" [ngClass]="{'has-error': (talkForm.get('titleTalk').touched || 
+                                              talkForm.get('titleTalk').dirty) &&
+                                              !talkForm.get('titleTalk').valid }">
           <label class="col-md-2 control-label" for="titleTalkId">Title of the talk</label>
           <div class="col-md-8">
             <input class="form-control" id="titleTalkId" type="text" placeholder="Title of the talk (required)" formControlName="titleTalk"/>
-            <span class="help-block" *ngIf="(customerForm.get('titleTalk').touched || 
-                                                customerForm.get('titleTalk').dirty) && 
-                                                customerForm.get('titleTalk').errors">
-              <span *ngIf="customerForm.get('titleTalk').errors.required">Please enter the title of the talk.</span>
-              <span *ngIf="customerForm.get('titleTalk').errors.minlength">The title of the talk must be longer than 3 characters.</span>
+            <span class="help-block" *ngIf="(talkForm.get('titleTalk').touched || 
+                                                talkForm.get('titleTalk').dirty) && 
+                                                talkForm.get('titleTalk').errors">
+              <span *ngIf="talkForm.get('titleTalk').errors.required">Please enter the title of the talk.</span>
+              <span *ngIf="talkForm.get('titleTalk').errors.minlength">The title of the talk must be longer than 3 characters.</span>
             </span>
           </div>
         </div>
 
-        <div class="form-group" [ngClass]="{'has-error': (customerForm.get('duration').touched || 
-                                                customerForm.get('duration').dirty) &&
-                                                !customerForm.get('duration').valid }">
+        <div class="form-group" [ngClass]="{'has-error': (talkForm.get('duration').touched || 
+                                                talkForm.get('duration').dirty) &&
+                                                !talkForm.get('duration').valid }">
           <label class="col-md-2 control-label" for="durationId">Approximate duration</label>
           <div class="col-md-8">
             <input class="form-control" id="durationId" type="text" placeholder="Approximate duration (required)" formControlName="duration"/>
-            <span class="help-block" *ngIf="(customerForm.get('duration').touched || 
-                                                customerForm.get('duration').dirty) && 
-                                                customerForm.get('duration').errors">
-              <span *ngIf="customerForm.get('duration').errors.required">Please enter a approximate duration.</span>
+            <span class="help-block" *ngIf="(talkForm.get('duration').touched || 
+                                                talkForm.get('duration').dirty) && 
+                                                talkForm.get('duration').errors">
+              <span *ngIf="talkForm.get('duration').errors.required">Please enter a approximate duration.</span>
             </span>
           </div>
         </div>
@@ -107,54 +107,54 @@
                 <option value="XL">XL</option>
                 <option value="XL">XXL</option>
             </select>
-            <span class="help-block" *ngIf="(customerForm.get('shirtSize').touched || 
-                                                  customerForm.get('shirtSize').dirty) && 
-                                                  customerForm.get('shirtSize').errors">
-              <span *ngIf="customerForm.get('shirtSize').errors?.required">Please confirm your shirt size.</span>
+            <span class="help-block" *ngIf="(talkForm.get('shirtSize').touched || 
+                                                  talkForm.get('shirtSize').dirty) && 
+                                                  talkForm.get('shirtSize').errors">
+              <span *ngIf="talkForm.get('shirtSize').errors?.required">Please confirm your shirt size.</span>
             </span>
           </div>
         </div>
 
         
-        <div class="form-group" [ngClass]="{'has-error': (customerForm.get('talkDescription').touched || 
-                                                  customerForm.get('talkDescription').dirty) &&
-                                                  !customerForm.get('talkDescription').valid }">
+        <div class="form-group" [ngClass]="{'has-error': (talkForm.get('talkDescription').touched || 
+                                                  talkForm.get('talkDescription').dirty) &&
+                                                  !talkForm.get('talkDescription').valid }">
           <label class="col-md-2 control-label" for="talkDescriptionId">Small description of the talk</label>
           <div class="col-md-8">
             <textarea class="form-control" id="talkDescriptionId" type="text" placeholder="Small description of the talk (required)" formControlName="talkDescription"></textarea>
-            <span class="help-block" *ngIf="(customerForm.get('talkDescription').touched || 
-                                                  customerForm.get('talkDescription').dirty) && 
-                                                  customerForm.get('talkDescription').errors">
-              <span *ngIf="customerForm.get('talkDescription').errors.required">Please enter a small description of the talk.</span>
-              <span *ngIf="customerForm.get('talkDescription').errors.minlength">The description must be longer than 3 characters.</span>
+            <span class="help-block" *ngIf="(talkForm.get('talkDescription').touched || 
+                                                  talkForm.get('talkDescription').dirty) && 
+                                                  talkForm.get('talkDescription').errors">
+              <span *ngIf="talkForm.get('talkDescription').errors.required">Please enter a small description of the talk.</span>
+              <span *ngIf="talkForm.get('talkDescription').errors.minlength">The description must be longer than 3 characters.</span>
             </span>
           </div>
         </div>
 
-        <div class="form-group" [ngClass]="{'has-error': (customerForm.get('speakerDescription').touched || 
-                                                  customerForm.get('speakerDescription').dirty) &&
-                                                  !customerForm.get('speakerDescription').valid }">
+        <div class="form-group" [ngClass]="{'has-error': (talkForm.get('speakerDescription').touched || 
+                                                  talkForm.get('speakerDescription').dirty) &&
+                                                  !talkForm.get('speakerDescription').valid }">
           <label class="col-md-2 control-label" for="speakerDescriptionId">Small description about you (career, occupation, etc.)</label>
           <div class="col-md-8">
             <textarea class="form-control" id="speakerDescriptionId" type="text" placeholder="Small description about you (required)" formControlName="speakerDescription"></textarea>
-            <span class="help-block" *ngIf="(customerForm.get('speakerDescription').touched || 
-                                                  customerForm.get('speakerDescription').dirty) && 
-                                                  customerForm.get('speakerDescription').errors">
-              <span *ngIf="customerForm.get('speakerDescription').errors.required">Please enter a small description about you.</span>
-              <span *ngIf="customerForm.get('speakerDescription').errors.minlength">The description must be longer than 3 characters.</span>
+            <span class="help-block" *ngIf="(talkForm.get('speakerDescription').touched || 
+                                                  talkForm.get('speakerDescription').dirty) && 
+                                                  talkForm.get('speakerDescription').errors">
+              <span *ngIf="talkForm.get('speakerDescription').errors.required">Please enter a small description about you.</span>
+              <span *ngIf="talkForm.get('speakerDescription').errors.minlength">The description must be longer than 3 characters.</span>
             </span>
           </div>
         </div>
 
-        <div class="form-group" [ngClass]="{'has-error': (customerForm.get('necessaryResources').touched || 
-                                                customerForm.get('necessaryResources').dirty) &&
-                                                !customerForm.get('necessaryResources').valid }">
+        <div class="form-group" [ngClass]="{'has-error': (talkForm.get('necessaryResources').touched || 
+                                                talkForm.get('necessaryResources').dirty) &&
+                                                !talkForm.get('necessaryResources').valid }">
           <label class="col-md-2 control-label" for="necessaryResourcesId">Necessary resources</label>
           <div class="col-md-8">
           <textarea class="form-control" id="necessaryResourcesId" type="text" placeholder="Necessary resources" formControlName="necessaryResources"></textarea>
-          <span class="help-block" *ngIf="(customerForm.get('necessaryResources').touched || 
-                                                customerForm.get('necessaryResources').dirty) && 
-                                                customerForm.get('necessaryResources').errors">
+          <span class="help-block" *ngIf="(talkForm.get('necessaryResources').touched || 
+                                                talkForm.get('necessaryResources').dirty) && 
+                                                talkForm.get('necessaryResources').errors">
           </span>
           </div>
         </div>
@@ -164,7 +164,7 @@
               <span>
                   <button class="btn btn-primary"
                           type="submit"
-                          [disabled]="!customerForm.valid">
+                          [disabled]="!talkForm.valid">
                       Save
                   </button>
               </span>
@@ -182,7 +182,7 @@
     </form>
   </div>
 </div>
-<br>Dirty: {{ customerForm.dirty }}
-<br>Touched: {{ customerForm.touched }}
-<br>Valid: {{ customerForm.valid }}
-<br>Value: {{ customerForm.value | json }}
+<br>Dirty: {{ talkForm.dirty }}
+<br>Touched: {{ talkForm.touched }}
+<br>Valid: {{ talkForm.valid }}
+<br>Value: {{ talkForm.value | json }}

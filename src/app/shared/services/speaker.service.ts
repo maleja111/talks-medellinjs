@@ -11,12 +11,21 @@ export class SpeakerService {
 
   }
 
-  saveSpeaker(): Observable<any> {
-    const headers = new Headers()
-    const options = '';
-    return this.http.post('http://localhost:8081/talks', options)
+  // saveSpeaker(): Observable<any> {
+  //   // const headers = new Headers()
+  //   const options = '';
+  //   return this.http.post('http://localhost:8081/talks', options)
+  //     .map( (res: Response) => {
+  //       console.log(res.json());
+  //       return res.json();
+  //     })
+  //     .catch(this.handleError);
+  // }
+
+  saveSpeaker(data: any): Observable<any> {
+    return this.http.post('http://localhost:8081/speakers', data)
       .map( (res: Response) => {
-        console.log(res.json());
+        console.log('saveSpeakers', res.json());
         return res.json();
       })
       .catch(this.handleError);
@@ -31,7 +40,7 @@ export class SpeakerService {
     } else {
       errMsg = error.message ? error.message : error.toString();
     }
-    console.log(errMsg);
+    console.log('handleError', errMsg);
     return Observable.throw(errMsg);
   }
 }
