@@ -4,7 +4,7 @@
 /* Mobile Layout: 320px */
 /* Wide Mobile Layout: 480px */
 /* =================================== */
-/*  Basic Style 
+/*  Basic Style
 /* =================================== */
 ::-webkit-input-placeholder {
   /* WebKit, Blink, Edge */
@@ -1630,4 +1630,17 @@ footer .footer-nav li a:hover {
 
 .footer-bottom .footer-text a:hover {
   color: #00ff8c;
+}
+
+.container-talk {
+  position: relative;
+  padding-top: 1.5em;
+  margin-right: 0;
+  margin-bottom: 0;
+  margin-left: 0;
+  border-width: .2rem;
+  padding-left: 18.5em;
+}
+.container{
+  max-width: 960px !important;
 }
