@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { TalkService } from '../shared/services/talk.service';
 import { TalkTableComponent } from './talk-table.component';
+import { HttpModule } from '@angular/http';
 
 describe('TalkTableComponent', () => {
   let component: TalkTableComponent;
@@ -8,9 +9,10 @@ describe('TalkTableComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TalkTableComponent ]
-    })
-    .compileComponents();
+      imports: [HttpModule],
+      declarations: [TalkTableComponent],
+      providers: [TalkService]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
